@@ -16,7 +16,7 @@ $admin = $result->fetch_assoc();
 if ($admin && password_verify($password, $admin['password'])) {
     $_SESSION['admin_name'] = $admin['username'];
     $_SESSION['admin_id'] = $admin['id'];
-    header("Location: dashboard.php");
+    header("Location: admin_dashboard.php");
     exit();
 } else {
     echo "<script>alert('Invalid admin credentials'); window.history.back();</script>";

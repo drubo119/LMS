@@ -1,0 +1,15 @@
+{
+  "workbench.colorCustomizations": {
+    "sideBar.background": "#141422",
+    "minimap.background": "#141422",
+    "terminal.border": "#2c2c54",
+    "terminal.background": "#07070b",
+    "scrollbarSlider.background": "#474787",
+    "scrollbarSlider.hoverBackground": "#706fd3",
+    "terminal.foreground": "#b922af",
+    "terminal.fontFamily": "ubuntu mono",
+    "terminal.fontSize": 10,
+    "terminalCursor.background": "#141422",
+    "terminalCursor.foreground": "#22b97d"
+  }
+}

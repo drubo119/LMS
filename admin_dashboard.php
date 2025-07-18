@@ -12,17 +12,18 @@ if (!isset($_SESSION['admin_name'])) {
   <meta charset="UTF-8">
   <title>Admin Dashboard</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
 <body style="background: url('photos/admin.jpg') center center / cover no-repeat; height: 100vh;">
 
 <nav class="navbar navbar-dark bg-dark px-4">
   <a class="navbar-brand fw-bold" href="#">📖 Admin Panel</a>
-  <span class="text-white">Welcome, <?= htmlspecialchars($_SESSION['admin_name']) ?></span>
+  <span class="text-white animate__animated animate__fadeInUp animate__delay-1s">Welcome, <?= htmlspecialchars($_SESSION['admin_name']) ?></span>
   <a href="logout.php" class="btn btn-outline-light ms-3">Logout</a>
 </nav>
 
 <div class="container my-5" >
-  <h2 class="mb-4 text-white">Admin Dashboard</h2>
+  <h2 class="mb-4 text-white animate__animated animate__lightSpeedInLeft">Admin Dashboard</h2>
   <div class="row g-4">
 
     <!-- Book Management -->

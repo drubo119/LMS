@@ -13,17 +13,18 @@ if (!isset($_SESSION['user_name'])) {
   <meta charset="UTF-8">
   <title>User Dashboard</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
 <body style="background: url('photos/user.jpg') center center / cover no-repeat; height: 100vh;">
 
 <nav class="navbar navbar-dark bg-dark px-4">
   <a class="navbar-brand fw-bold" href="#">📚 User Dashboard</a>
-  <span class="text-white">Welcome, <?= htmlspecialchars($_SESSION['user_name']) ?></span>
+  <span class="text-white animate__animated animate__fadeInUp animate__delay-1s">Welcome, <?= htmlspecialchars($_SESSION['user_name']) ?></span>
   <a href="logout.php" class="btn btn-outline-light ms-3">Logout</a>
 </nav>
 
 <div class="container my-5">
-  <h2 class="mb-4 text-white">User Dashboard</h2>
+  <h2 class="mb-4 text-white animate__animated animate__lightSpeedInLeft">User Dashboard</h2>
   <div class="row g-4">
 
     <!-- Book Browsing

@@ -12,7 +12,7 @@
 <body>
 
   <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top">
   <div class="container">
     <a class="navbar-brand fw-bold" href="index.php">📖 LMS</a>
 
@@ -22,14 +22,14 @@
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="user_login.php">User Login</a>
+        <li class="nav-item btn btn-outline-light">
+          <a class="nav-link text-success fw-bold" href="user_login.php" >User Login</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="admin_login.php">Admin Login</a>
+        <li class="nav-item btn btn-outline-light ms-2">
+          <a class="nav-link text-success fw-bold" href="admin_login.php">Admin Login</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="signup.php">Signup</a>
+        <li class="nav-item btn btn-outline-light ms-2">
+          <a class="nav-link text-success fw-bold" href="signup.php">Signup</a>
         </li>
       </ul>
     </div>

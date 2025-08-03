@@ -31,13 +31,62 @@ if (!isset($_SESSION['admin_name'])) {
       <div class="card shadow h-100">
         <div class="card-body">
           <h5 class="card-title">📘 Book Management</h5>
-          <ul>
-            <li><a href="add_book.php">Add Book</a></li>
-            <li><a href="view_books.php">View/Edit/Delete Books</a></li>
-            <li><a href="manage_authors.php">Manage Authors </a></li>
-            <li><a href="manage_categories.php">Manage Categories</a></li>
-            <li><a href="edit_copy_condition.php">Track Book Condition</a></li>
-            <li><a href="manage_book_copies.php">Manage Copies</a></li>
+          <ul class="list-unstyled">
+          <li class="p-3" style="transition: background-color 0.3s;">
+  <a href="add_book.php" 
+     class="text-decoration-none d-block" 
+     style="color: inherit;" 
+     onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 
+     onmouseout="this.parentElement.style.backgroundColor='transparent'">
+    Add Book
+  </a>
+</li>
+
+            <li class="p-3" style="transition: background-color 0.3s;">
+  <a href="view_books.php" 
+     class="text-decoration-none d-block" 
+     style="color: inherit;" 
+     onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 
+     onmouseout="this.parentElement.style.backgroundColor='transparent'">
+    View/Edit/Delete Books
+  </a>
+</li>
+            <li class="p-3" style="transition: background-color 0.3s;">
+  <a href="manage_authors.php" 
+     class="text-decoration-none d-block" 
+     style="color: inherit;" 
+     onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 
+     onmouseout="this.parentElement.style.backgroundColor='transparent'">
+    Manage Authors
+  </a>
+</li>
+            <li class="p-3" style="transition: background-color 0.3s;">
+  <a href="manage_categories.php" 
+     class="text-decoration-none d-block" 
+     style="color: inherit;" 
+     onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 
+     onmouseout="this.parentElement.style.backgroundColor='transparent'">
+    Manage Categories
+  </a>
+</li>
+            <li class="p-3" style="transition: background-color 0.3s;">
+  <a href="track_book_condition.php" 
+     class="text-decoration-none d-block" 
+     style="color: inherit;" 
+     onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 
+     onmouseout="this.parentElement.style.backgroundColor='transparent'">
+    Track Book Condition
+  </a>
+</li>
+            <li class="p-3" style="transition: background-color 0.3s;">
+  <a href="manage_book_copies.php" 
+     class="text-decoration-none d-block" 
+     style="color: inherit;" 
+     onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 
+     onmouseout="this.parentElement.style.backgroundColor='transparent'">
+    Manage Copies
+  </a>
+</li>
           </ul>
         </div>
       </div>
@@ -48,11 +97,43 @@ if (!isset($_SESSION['admin_name'])) {
       <div class="card shadow h-100">
         <div class="card-body">
           <h5 class="card-title">👥 Member Management</h5>
-          <ul>
-            <li><a href="add_member.php">Register Member</a></li>
-            <li><a href="view_members.php">Manage Members</a></li>
-            <li><a href="member_history.php">Borrowing History</a></li>
-            <li><a href="membership_tiers.php">Manage Membership Tiers</a></li>
+          <ul class="list-unstyled">
+            <li class="p-3" style="transition: background-color 0.3s;">
+  <a href="add_member.php" 
+     class="text-decoration-none d-block" 
+     style="color: inherit;" 
+     onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 
+     onmouseout="this.parentElement.style.backgroundColor='transparent'">
+    Register Member
+  </a>
+</li>
+            <li class="p-3" style="transition: background-color 0.3s;">
+  <a href="view_members.php" 
+     class="text-decoration-none d-block" 
+     style="color: inherit;" 
+     onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 
+     onmouseout="this.parentElement.style.backgroundColor='transparent'">
+    Manage Members
+  </a>
+</li>
+            <li class="p-3" style="transition: background-color 0.3s;">
+  <a href="member_history.php" 
+     class="text-decoration-none d-block" 
+     style="color: inherit;" 
+     onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 
+     onmouseout="this.parentElement.style.backgroundColor='transparent'">
+    Borrowing History
+  </a>
+</li>
+            <li class="p-3" style="transition: background-color 0.3s;">
+  <a href="membership_tiers.php" 
+     class="text-decoration-none d-block" 
+     style="color: inherit;" 
+     onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 
+     onmouseout="this.parentElement.style.backgroundColor='transparent'">
+    Manage Membership Tiers
+  </a>
+</li>
           </ul>
         </div>
       </div>
@@ -63,13 +144,61 @@ if (!isset($_SESSION['admin_name'])) {
       <div class="card shadow h-100">
         <div class="card-body">
           <h5 class="card-title">📖 Borrowing Management</h5>
-          <ul>
-            <li><a href="borrow_book.php">Borrow Book</a></li>
-            <li><a href="return_book.php">Return Book</a></li>
-            <li><a href="update_book_status.php">Update Book Status</a></li>
-            <li><a href="reserve_books.php">Manage Reservations</a></li>
-            <li><a href="manage_fines.php">Calculate Fines</a></li>
-            <li><a href="lost_damaged_books.php">Lost/Damaged Penalties</a></li>
+          <ul class="list-unstyled">
+            <li class="p-3" style="transition: background-color 0.3s;">
+  <a href="borrow_book.php" 
+     class="text-decoration-none d-block" 
+     style="color: inherit;" 
+     onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 
+     onmouseout="this.parentElement.style.backgroundColor='transparent'">
+    Borrow Book
+  </a>
+</li>
+            <li class="p-3" style="transition: background-color 0.3s;">
+  <a href="return_book.php" 
+     class="text-decoration-none d-block" 
+     style="color: inherit;" 
+     onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 
+     onmouseout="this.parentElement.style.backgroundColor='transparent'">
+    Return Book
+  </a>
+</li>
+            <li class="p-3" style="transition: background-color 0.3s;">
+  <a href="update_book_status.php" 
+     class="text-decoration-none d-block" 
+     style="color: inherit;" 
+     onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 
+     onmouseout="this.parentElement.style.backgroundColor='transparent'">
+    Update Book Status
+  </a>
+</li>
+            <li class="p-3" style="transition: background-color 0.3s;">
+  <a href="reserve_books.php" 
+     class="text-decoration-none d-block" 
+     style="color: inherit;" 
+     onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 
+     onmouseout="this.parentElement.style.backgroundColor='transparent'">
+    Manage Reservations
+  </a>
+</li>
+            <li class="p-3" style="transition: background-color 0.3s;">
+  <a href="manage_fines.php" 
+     class="text-decoration-none d-block" 
+     style="color: inherit;" 
+     onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 
+     onmouseout="this.parentElement.style.backgroundColor='transparent'">
+    Calculate Fines
+  </a>
+</li>
+            <li class="p-3" style="transition: background-color 0.3s;">
+  <a href="lost_damaged_books.php" 
+     class="text-decoration-none d-block" 
+     style="color: inherit;" 
+     onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 
+     onmouseout="this.parentElement.style.backgroundColor='transparent'">
+    Lost/Damaged Penalties
+  </a>
+</li>
           </ul>
         </div>
       </div>

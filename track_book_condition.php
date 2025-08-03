@@ -1,32 +1,51 @@
 <?php
 include 'db_connect.php';
 
+echo "You are in track_book_condition.php<br>";
+echo "<pre>";
+print_r($_GET);
+echo "</pre>";
+
+// Validate and get copy_id
 if (!isset($_GET['copy_id']) || !is_numeric($_GET['copy_id'])) {
     die("Invalid copy ID.");
 }
-$copy_id = $_GET['copy_id'];
+$copy_id = $_GET['Copy_ID'];
 
-// Fetch the copy data
-$stmt = $conn->prepare("SELECT * FROM Book_Copy WHERE Copy_ID = ?");
+// Fetch the copy data using correct column names
+$stmt = $conn->prepare("SELECT Copy_ID, Book_ID, `Condition`, Availability_Status FROM Book_Copy WHERE Copy_ID = ?");
 $stmt->bind_param("i", $copy_id);
 $stmt->execute();
-$result = $stmt->get_result();
-$copy = $result->fetch_assoc();
+$stmt->store_result();
 
-if (!$copy) {
+if ($stmt->num_rows === 0) {
     die("Book copy not found.");
 }
 
-if (isset($_POST['update'])) {
-    $condition = $_POST['condition'];
-    $availability = $_POST['availability'];
+$stmt->bind_result($copy_id, $book_id, $condition, $availability);
+$stmt->fetch();
 
-    $update = $conn->prepare("UPDATE Book_Copy SET Condition_Status = ?, Availability_Status = ? WHERE Copy_ID = ?");
-    $update->bind_param("ssi", $condition, $availability, $copy_id);
-    $update->execute();
+$copy = [
+    'Copy_ID' => $copy_id,
+    'Book_ID' => $book_id,
+    'Condition' => $condition,
+    'Availability_Status' => $availability,
+];
 
-    header("Location: manage_book_copies.php");
-    exit;
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
+    $new_condition = $_POST['condition'];
+    $new_availability = $_POST['availability'];
+
+    $update_stmt = $conn->prepare("UPDATE Book_Copy SET `Condition` = ?, Availability_Status = ? WHERE Copy_ID = ?");
+    $update_stmt->bind_param("ssi", $new_condition, $new_availability, $copy_id);
+    
+    if ($update_stmt->execute()) {
+        header("Location: manage_book_copies.php");
+        exit;
+    } else {
+        echo "Failed to update.";
+    }
 }
 ?>
 
@@ -43,9 +62,9 @@ if (isset($_POST['update'])) {
         <div class="mb-3">
             <label class="form-label">Condition Status</label>
             <select name="condition" class="form-control" required>
-                <option value="New" <?= $copy['Condition_Status'] === 'New' ? 'selected' : '' ?>>New</option>
-                <option value="Damaged" <?= $copy['Condition_Status'] === 'Damaged' ? 'selected' : '' ?>>Damaged</option>
-                <option value="Lost" <?= $copy['Condition_Status'] === 'Lost' ? 'selected' : '' ?>>Lost</option>
+                <option value="New" <?= $copy['Condition'] === 'New' ? 'selected' : '' ?>>New</option>
+                <option value="Damaged" <?= $copy['Condition'] === 'Damaged' ? 'selected' : '' ?>>Damaged</option>
+                <option value="Lost" <?= $copy['Condition'] === 'Lost' ? 'selected' : '' ?>>Lost</option>
             </select>
         </div>
         <div class="mb-3">

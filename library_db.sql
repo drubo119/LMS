@@ -165,3 +165,17 @@ INSERT INTO Author (Author_Name, Nationality) VALUES
 ('F. Scott Fitzgerald', 'American'),
 ('Leo Tolstoy', 'Russian'),
 ('Harper Lee', 'American');
+
+INSERT INTO Fine_Policy (Membership_Type, Fine_Per_Day, Max_Fine) VALUES
+('Student', 1.00, 30.00),
+('Faculty', 2.00, 50.00),
+('Staff', 3.00, 70.00);
+
+INSERT INTO Staff (Name, Role, Username, Password) VALUES
+('Shihab', 'Admin', 'admin', 'admin123'),
+('Tania Reza', 'Librarian', 'tania_librarian', 'lib456');
+
+INSERT INTO Reservation (Book_ID, Member_ID, Reservation_Date, Status) VALUES
+(3, 1, '2025-07-28', 'Pending'),
+(2, 3, '2025-07-29', 'Fulfilled');
+

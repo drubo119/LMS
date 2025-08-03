@@ -18,7 +18,7 @@ if (!isset($_SESSION['user_name'])) {
 <body style="background: url('photos/user.jpg') center center / cover no-repeat; height: 100vh;">
 
 <nav class="navbar navbar-dark bg-dark px-4">
-  <a class="navbar-brand fw-bold" href="#">📚 User Dashboard</a>
+  <a class="navbar-brand fw-bold" href="#">👤 User Dashboard</a>
   <span class="text-white animate__animated animate__fadeInUp animate__delay-1s">Welcome, <?= htmlspecialchars($_SESSION['user_name']) ?></span>
   <a href="logout.php" class="btn btn-outline-light ms-3">Logout</a>
 </nav>
@@ -112,12 +112,13 @@ if (!isset($_SESSION['user_name'])) {
 </div> -->
 
 <div class="col-md-4">
-  <div class="card shadow h-100">
+  <div class="card shadow h-100 bg-light" >
     <div class="card-body text-center">
       <h5 class="card-title">📘 Browse Books</h5>
 
       <!-- Book Slideshow Area -->
-      <img id="bookImage" src="" alt="Book Cover" class="img-fluid mb-2" style="max-height: 200px; object-fit: contain;">
+      <img id="bookImage" src="" alt="Book Cover" class="img-fluid mb-2 " style="max-height: 200px; object-fit: contain;">
+
       <h6 id="bookTitle" class="mb-1"></h6>
       <span id="bookStatus" class="badge mb-2"></span>
       <div id="reserveBtnContainer" class="mb-3"></div>
@@ -135,30 +136,42 @@ if (!isset($_SESSION['user_name'])) {
         let currentIndex = 0;
 
         function updateBook() {
-          const book = books[currentIndex];
-          document.getElementById('bookImage').src = book.image;
-          document.getElementById('bookTitle').textContent = book.title;
+  const book = books[currentIndex];
+  const bookImage = document.getElementById('bookImage');
 
-          const statusEl = document.getElementById('bookStatus');
-          const reserveContainer = document.getElementById('reserveBtnContainer');
-          
-          if (book.available) {
-            statusEl.textContent = "Available";
-            statusEl.className = "badge bg-success";
+  // Update image source
+  bookImage.src = book.image;
 
-            reserveContainer.innerHTML = `
-  <form action="reserve_book.php" method="POST">
-    <input type="hidden" name="book_id" value="${book.book_id}">
-    <button type="submit" class="btn btn-primary btn-sm">Reserve</button>
-  </form>
-`;
+  // Re-trigger animation (slide in up)
+ 
+  void bookImage.offsetWidth; // Force reflow
+  
 
-          } else {
-            statusEl.textContent = "Not Available";
-            statusEl.className = "badge bg-danger";
-            reserveContainer.innerHTML = '';
-          }
-        }
+  // Update title
+  document.getElementById('bookTitle').textContent = book.title;
+
+  // Update status and reserve button
+  const statusEl = document.getElementById('bookStatus');
+  const reserveContainer = document.getElementById('reserveBtnContainer');
+
+  if (book.available) {
+    statusEl.textContent = "Available";
+    statusEl.className = "badge bg-success";
+
+    reserveContainer.innerHTML = `
+      <form action="reserve_book.php" method="POST">
+        <input type="hidden" name="book_id" value="${book.book_id}">
+        <button type="submit" class="btn btn-primary btn-sm">Reserve</button>
+      </form>
+    `;
+  } else {
+    statusEl.textContent = "Not Available";
+    statusEl.className = "badge bg-danger";
+    reserveContainer.innerHTML = '';
+  }
+}
+
+
 
         function nextBook() {
           currentIndex = (currentIndex + 1) % books.length;
@@ -172,7 +185,7 @@ if (!isset($_SESSION['user_name'])) {
 
         document.getElementById('nextBtn').addEventListener('click', nextBook);
         document.getElementById('prevBtn').addEventListener('click', prevBook);
-        setInterval(nextBook, 5000); // Auto change
+        setInterval(nextBook, 2000); // Auto change
 
         updateBook(); // Show first book
       </script>

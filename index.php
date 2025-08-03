@@ -23,10 +23,10 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item btn btn-outline-light">
-          <a class="nav-link text-success fw-bold" href="user_login.php" >User Login</a>
+          <a class="nav-link text-primary fw-bold" href="user_login.php" >User Login</a>
         </li>
         <li class="nav-item btn btn-outline-light ms-2">
-          <a class="nav-link text-success fw-bold" href="admin_login.php">Admin Login</a>
+          <a class="nav-link text-danger fw-bold" href="admin_login.php">Admin Login</a>
         </li>
         <li class="nav-item btn btn-outline-light ms-2">
           <a class="nav-link text-success fw-bold" href="signup.php">Signup</a>
@@ -39,7 +39,7 @@
 
   <!-- Cover Section -->
 <div class="bg-dark text-danger text-center py-5 mb-4" style="background: url('photos/cover.png') center center / cover no-repeat; height: 100vh;">
-<h1 class="display-4 fw-bold animate__animated animate__fadeInDown">Welcome to the Library</h1>
+<h1 class="display-4 fw-bold animate__animated animate__fadeInDown "style="color:#2bd3d6;">Welcome to the Library</h1>
 <p class="lead text-light animate__animated animate__fadeInUp animate__delay-1s">Manage Books, Members, and Borrowing with ease</p>
 
 </div>

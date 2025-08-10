@@ -12,12 +12,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $language = $_POST["language"];
 
     $sql = "INSERT INTO Book (Title, Author_ID, Category_ID, Publisher, ISBN, Language)
-            VALUES (?, ?, ?, ?, ?, ?)";
+            VALUES ('$title', $author_id, $category_id, '$publisher', '$isbn', '$language')";
     
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("siisss", $title, $author_id, $category_id, $publisher, $isbn, $language);
+   
 
-    if ($stmt->execute()) {
+    $result=mysqli_query($conn, $sql);
+
+    if ($result) {
         $message = "✅ Book added successfully!";
     } else {
         $message = "❌ Error: " . $conn->error;

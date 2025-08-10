@@ -3,7 +3,7 @@ USE library_db;
 
 -- Users table (for user login/signup)
 CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    User_ID INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
@@ -18,8 +18,7 @@ CREATE TABLE admins (
     password VARCHAR(255) NOT NULL
 );
 
-CREATE DATABASE IF NOT EXISTS library_db;
-USE library_db;
+
 
 -- CATEGORY
 CREATE TABLE Category (
@@ -43,8 +42,8 @@ CREATE TABLE Book (
   Publisher VARCHAR(100),
   ISBN VARCHAR(50),
   Language VARCHAR(50),
-  FOREIGN KEY (Author_ID) REFERENCES Author(Author_ID),
-  FOREIGN KEY (Category_ID) REFERENCES Category(Category_ID)
+  FOREIGN KEY (Author_ID) ,
+  FOREIGN KEY (Category_ID) 
 );
 
 -- BOOK COPY (weak entity)
@@ -53,7 +52,7 @@ CREATE TABLE Book_Copy (
   Book_ID INT,
   Condition_Status ENUM('New', 'Damaged', 'Lost') DEFAULT 'New',
   Availability_Status ENUM('Available', 'Reserved', 'Loaned') DEFAULT 'Available',
-  FOREIGN KEY (Book_ID) REFERENCES Book(Book_ID)
+  FOREIGN KEY (Book_ID) 
 );
 
 -- MEMBER
@@ -76,19 +75,19 @@ CREATE TABLE Loan (
   Due_Date DATE,
   Return_Date DATE,
   Fine_Amount DECIMAL(10,2),
-  FOREIGN KEY (Book_Copy_ID) REFERENCES Book_Copy(Copy_ID),
-  FOREIGN KEY (Member_ID) REFERENCES Member(Member_ID)
+  FOREIGN KEY (Book_Copy_ID) ,
+  FOREIGN KEY (Member_ID) 
 );
 
 -- RESERVATION
 CREATE TABLE Reservation (
-  Reservation_ID INT AUTO_INCREMENT PRIMARY KEY,
-  Book_ID INT,
-  Member_ID INT,
+  Staff_ID INT ,
+  Book_ID INT PRIMARY KEY,
+  Member_ID INT PRIMARY KEY,
   Reservation_Date DATE,
   Status ENUM('Pending', 'Fulfilled', 'Cancelled') DEFAULT 'Pending',
-  FOREIGN KEY (Book_ID) REFERENCES Book(Book_ID),
-  FOREIGN KEY (Member_ID) REFERENCES Member(Member_ID)
+  FOREIGN KEY (Book_ID) ,
+  FOREIGN KEY (Member_ID) 
 );
 
 -- STAFF / ADMIN
@@ -106,8 +105,8 @@ CREATE TABLE UserAccount (
   Member_ID INT,
   Username VARCHAR(100) UNIQUE,
   Password VARCHAR(255),
-  Access_Level ENUM('Member', 'Admin'),
-  FOREIGN KEY (Member_ID) REFERENCES Member(Member_ID)
+ 
+  FOREIGN KEY (Member_ID) 
 );
 
 -- FINE POLICY
@@ -173,7 +172,7 @@ INSERT INTO Fine_Policy (Membership_Type, Fine_Per_Day, Max_Fine) VALUES
 
 INSERT INTO Staff (Name, Role, Username, Password) VALUES
 ('Shihab', 'Admin', 'admin', 'admin123'),
-('Tania Reza', 'Librarian', 'tania_librarian', 'lib456');
+('Riana', 'Librarian', 'riana_librarian', 'lib456');
 
 INSERT INTO Reservation (Book_ID, Member_ID, Reservation_Date, Status) VALUES
 (3, 1, '2025-07-28', 'Pending'),

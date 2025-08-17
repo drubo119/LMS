@@ -34,17 +34,36 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
             $stmt->execute();
             $stmt->close();
 
-            // 2. Add Loan entry
-            $loan_date = date("Y-m-d");
-            $due_date = date("Y-m-d", strtotime("+14 days"));
+            // 2. Get an available copy of this book
+            $copy_q = $conn->prepare("SELECT Copy_ID FROM Book_Copy WHERE Book_ID=? AND Availability_Status='Available' LIMIT 1");
+            $copy_q->bind_param("i", $book_id);
+            $copy_q->execute();
+            $copy_res = $copy_q->get_result()->fetch_assoc();
+            $copy_q->close();
 
-            // For now assume Book_ID is same as Book_Copy_ID (you can adjust if you manage multiple copies separately)
-            $insert_loan = "INSERT INTO Loan (Book_Copy_ID, Member_ID, Loan_Date, Due_Date, Return_Date, Fine_Amount)
-                            VALUES (?, ?, ?, ?, NULL, 0.00)";
-            $stmt = $conn->prepare($insert_loan);
-            $stmt->bind_param("iiss", $book_id, $member_id, $loan_date, $due_date);
-            $stmt->execute();
-            $stmt->close();
+            if ($copy_res) {
+                $copy_id = $copy_res['Copy_ID'];
+                $loan_date = date("Y-m-d");
+                $due_date  = date("Y-m-d", strtotime("+14 days"));
+
+                // 3. Insert Loan entry
+                $insert_loan = "INSERT INTO Loan (Book_Copy_ID, Member_ID, Loan_Date, Due_Date, Return_Date, Fine_Amount)
+                                VALUES (?, ?, ?, ?, NULL, 0.00)";
+                $stmt = $conn->prepare($insert_loan);
+                $stmt->bind_param("iiss", $copy_id, $member_id, $loan_date, $due_date);
+                $stmt->execute();
+                $stmt->close();
+
+                // 4. Update Book_Copy status
+                $upd_copy = $conn->prepare("UPDATE Book_Copy SET Availability_Status='Loaned' WHERE Copy_ID=?");
+                $upd_copy->bind_param("i", $copy_id);
+                $upd_copy->execute();
+                $upd_copy->close();
+            } else {
+                // No available copy
+                echo "<script>alert('No available copy to loan.'); window.location='staff_manage_reservations.php';</script>";
+                exit;
+            }
         }
 
     } elseif ($action == "cancel") {
@@ -55,7 +74,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
         $stmt->close();
     }
 
-    header("Location: staff_manage_reservations.php");
+    header("Location: staff_dashboard.php");
     exit();
 }
 

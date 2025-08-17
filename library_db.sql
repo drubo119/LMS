@@ -102,15 +102,8 @@ CREATE TABLE Staff (
   Password VARCHAR(255)
 );
 
--- USER ACCOUNT (for login control)
-CREATE TABLE UserAccount (
-  User_ID INT AUTO_INCREMENT PRIMARY KEY,
-  Member_ID INT,
-  Username VARCHAR(100) UNIQUE,
-  Password VARCHAR(255),
- 
-  FOREIGN KEY (Member_ID) 
-);
+
+
 
 -- FINE POLICY
 CREATE TABLE Fine_Policy (
@@ -177,7 +170,5 @@ INSERT INTO Staff (Name, Role, Username, Password) VALUES
 ('Shihab', 'Admin', 'admin', 'admin123'),
 ('Riana', 'Librarian', 'riana_librarian', 'lib456');
 
-INSERT INTO Reservation (Book_ID, Member_ID, Reservation_Date, Status) VALUES
-(3, 1, '2025-07-28', 'Pending'),
-(2, 3, '2025-07-29', 'Fulfilled');
+
 

@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['staff_name'] = $staff['Name'];
             $_SESSION['staff_role'] = $staff['Role']; // Admin or Librarian
 
-            header("Location: staff_dashboard.php");
+            header("Location: staff_dashboards.php");
             exit();
         } else {
             $error = "Invalid username or password!";

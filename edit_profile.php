@@ -2,12 +2,12 @@
 session_start();
 include 'db_connect.php';
 
-if (!isset($_SESSION['id'])) {
+if (!isset($_SESSION['user_id'])) {
     header("Location: login_action.php");
     exit;
 }
 
-$user_id = $_SESSION['id'];
+$user_id = $_SESSION['user_id'];
 
 // Get basic user info from users table
 $stmt_user = $conn->prepare("SELECT name, email FROM users WHERE id=?");

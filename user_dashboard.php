@@ -223,7 +223,7 @@ if (!isset($_SESSION['user_name'])) {
         <div class="card-body">
           <h5 class="card-title">📖 My Borrowings</h5>
           <ul>
-            <li><a href="my_borrowings.php">View Borrowed Books</a></li>
+            <li><a href="view_borrowed_books.php">View Borrowed Books</a></li>
             <li><a href="my_fines.php">Check Fines</a></li>
           </ul>
         </div>

@@ -182,7 +182,7 @@ if (!isset($_SESSION['admin_name'])) {
   </a>
 </li>
             <li class="p-3" style="transition: background-color 0.3s;">
-  <a href="util_fines.php" 
+  <a href="calculate_fine.php" 
      class="text-decoration-none d-block" 
      style="color: inherit;" 
      onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 

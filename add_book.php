@@ -10,13 +10,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $publisher = $_POST["publisher"];
     $isbn = $_POST["isbn"];
     $language = $_POST["language"];
+    $image_url = $_POST["image_url"]; // ✅ New field
 
-    $sql = "INSERT INTO Book (Title, Author_ID, Category_ID, Publisher, ISBN, Language)
-            VALUES ('$title', $author_id, $category_id, '$publisher', '$isbn', '$language')";
-    
-   
+    $sql = "INSERT INTO Book (Title, Author_ID, Category_ID, Publisher, ISBN, Language, Image_URL)
+            VALUES ('$title', $author_id, $category_id, '$publisher', '$isbn', '$language', '$image_url')";
 
-    $result=mysqli_query($conn, $sql);
+    $result = mysqli_query($conn, $sql);
 
     if ($result) {
         $message = "✅ Book added successfully!";
@@ -86,12 +85,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" class="form-control" name="language">
       </div>
 
-      <button type="submit" class="btn btn-primary">Add Book</button>
-      <a href="admin_dashboard.php" class="btn btn-secondary ">
-  ← Back to Dashboard
-</a>
+      <!-- ✅ New Image URL field -->
+      <div class="mb-3">
+        <label class="form-label">Book Image URL</label>
+        <input type="url" class="form-control" name="image_url" placeholder="https://example.com/image.jpg">
+      </div>
 
+      <button type="submit" class="btn btn-primary">Add Book</button>
+      <a href="admin_dashboard.php" class="btn btn-secondary">← Back to Dashboard</a>
     </form>
   </div>
 </body>
 </html>
+

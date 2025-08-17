@@ -99,7 +99,7 @@ if (!isset($_SESSION['admin_name'])) {
           <h5 class="card-title">👥 Member Management</h5>
           <ul class="list-unstyled">
             <li class="p-3" style="transition: background-color 0.3s;">
-  <a href="add_member.php" 
+  <a href="register_member.php" 
      class="text-decoration-none d-block" 
      style="color: inherit;" 
      onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 
@@ -108,7 +108,7 @@ if (!isset($_SESSION['admin_name'])) {
   </a>
 </li>
             <li class="p-3" style="transition: background-color 0.3s;">
-  <a href="view_members.php" 
+  <a href="manage_members.php" 
      class="text-decoration-none d-block" 
      style="color: inherit;" 
      onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 
@@ -117,7 +117,7 @@ if (!isset($_SESSION['admin_name'])) {
   </a>
 </li>
             <li class="p-3" style="transition: background-color 0.3s;">
-  <a href="member_history.php" 
+  <a href="borrow_history.php" 
      class="text-decoration-none d-block" 
      style="color: inherit;" 
      onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 
@@ -126,7 +126,7 @@ if (!isset($_SESSION['admin_name'])) {
   </a>
 </li>
             <li class="p-3" style="transition: background-color 0.3s;">
-  <a href="membership_tiers.php" 
+  <a href="manage_membership_tiers.php" 
      class="text-decoration-none d-block" 
      style="color: inherit;" 
      onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 
@@ -146,7 +146,7 @@ if (!isset($_SESSION['admin_name'])) {
           <h5 class="card-title">📖 Borrowing Management</h5>
           <ul class="list-unstyled">
             <li class="p-3" style="transition: background-color 0.3s;">
-  <a href="borrow_book.php" 
+  <a href="borrow_return.php" 
      class="text-decoration-none d-block" 
      style="color: inherit;" 
      onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 
@@ -173,7 +173,7 @@ if (!isset($_SESSION['admin_name'])) {
   </a>
 </li>
             <li class="p-3" style="transition: background-color 0.3s;">
-  <a href="reserve_books.php" 
+  <a href="manage_reservations.php" 
      class="text-decoration-none d-block" 
      style="color: inherit;" 
      onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 
@@ -182,7 +182,7 @@ if (!isset($_SESSION['admin_name'])) {
   </a>
 </li>
             <li class="p-3" style="transition: background-color 0.3s;">
-  <a href="manage_fines.php" 
+  <a href="util_fines.php" 
      class="text-decoration-none d-block" 
      style="color: inherit;" 
      onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 

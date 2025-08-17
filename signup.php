@@ -46,14 +46,7 @@
         <label class="form-label">Email Address</label>
         <input type="email" name="email" class="form-control" required>
       </div>
-      <div class="mb-3">
-        <label class="form-label">Membership Type</label>
-        <select name="tier" class="form-select" required>
-          <option value="student">Student</option>
-          <option value="faculty">Faculty</option>
-          <option value="staff">Staff</option>
-        </select>
-      </div>
+      
       <div class="mb-3">
         <label class="form-label">Create Password</label>
         <input type="password" name="password" class="form-control" required>

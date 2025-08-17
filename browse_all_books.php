@@ -1,6 +1,7 @@
 <?php
 include 'db_connect.php';
 
+// Fetch books and availability
 $sql = "
   SELECT 
     b.Book_ID,
@@ -28,12 +29,12 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html>
 <head>
   <title>All Books</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body class="bg-light p-4">
   <h3 class="mb-4">All Books</h3>
@@ -47,7 +48,8 @@ while ($row = mysqli_fetch_assoc($result)) {
             <p>
               <?php if ($book['available']): ?>
                 <span class="badge bg-success">Available</span>
-                <a href="reserve_book.php?book_id=<?= $book['book_id'] ?>" class="btn btn-sm btn-primary mt-2">Reserve</a>
+                <button class="btn btn-sm btn-primary mt-2" onclick="reserveBook(<?= $book['book_id'] ?>, this)">Reserve</button>
+
               <?php else: ?>
                 <span class="badge bg-danger">Not Available</span>
               <?php endif; ?>
@@ -57,6 +59,26 @@ while ($row = mysqli_fetch_assoc($result)) {
       </div>
     <?php endforeach; ?>
   </div>
-</div>
+
+<script>
+function reserveBook(bookId, btn) {
+    fetch("reserve_book.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: "book_id=" + bookId
+    })
+    .then(response => response.text())
+    .then(data => {
+        alert(data);
+        btn.disabled = true;  // Disable button after successful reservation
+        btn.innerText = "Reserved";
+    })
+    .catch(error => {
+        alert("Error reserving book: " + error);
+    });
+}
+</script>
+
 </body>
 </html>
+

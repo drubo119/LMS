@@ -1,50 +1,44 @@
 <?php
-include 'db_connect.php';
+// Database connection
+$servername = "localhost";
+$username = "root"; // change if needed
+$password = ""; // change if needed
+$dbname = "library_db";
 
-echo "You are in track_book_condition.php<br>";
-echo "<pre>";
-print_r($_GET);
-echo "</pre>";
-
-// Validate and get copy_id
-if (!isset($_GET['copy_id']) || !is_numeric($_GET['copy_id'])) {
-    die("Invalid copy ID.");
-}
-$copy_id = $_GET['Copy_ID'];
-
-// Fetch the copy data using correct column names
-$stmt = $conn->prepare("SELECT Copy_ID, Book_ID, `Condition`, Availability_Status FROM Book_Copy WHERE Copy_ID = ?");
-$stmt->bind_param("i", $copy_id);
-$stmt->execute();
-$stmt->store_result();
-
-if ($stmt->num_rows === 0) {
-    die("Book copy not found.");
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 
-$stmt->bind_result($copy_id, $book_id, $condition, $availability);
-$stmt->fetch();
+$message = "";
 
-$copy = [
-    'Copy_ID' => $copy_id,
-    'Book_ID' => $book_id,
-    'Condition' => $condition,
-    'Availability_Status' => $availability,
-];
+// Update condition
+if (isset($_POST['update_condition'])) {
+    $copy_id = $_POST['copy_id'];
+    $new_condition = $_POST['condition_status'];
 
-// Handle form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
-    $new_condition = $_POST['condition'];
-    $new_availability = $_POST['availability'];
-
-    $update_stmt = $conn->prepare("UPDATE Book_Copy SET `Condition` = ?, Availability_Status = ? WHERE Copy_ID = ?");
-    $update_stmt->bind_param("ssi", $new_condition, $new_availability, $copy_id);
-    
-    if ($update_stmt->execute()) {
-        header("Location: manage_book_copies.php");
-        exit;
+    $sql = "UPDATE Book_Copy SET Condition_Status = '$new_condition' WHERE Copy_ID = $copy_id";
+    if ($conn->query($sql) === TRUE) {
+        $message = "<div class='alert alert-success'>Condition updated successfully!</div>";
     } else {
-        echo "Failed to update.";
+        $message = "<div class='alert alert-danger'>Error: " . $conn->error . "</div>";
+    }
+}
+
+// Search for book copy
+$book_data = null;
+if (isset($_GET['search'])) {
+    $copy_id = $_GET['copy_id'];
+    $sql = "SELECT bc.Copy_ID, b.Title, bc.Condition_Status, bc.Availability_Status
+            FROM Book_Copy bc
+            JOIN Book b ON bc.Book_ID = b.Book_ID
+            WHERE bc.Copy_ID = $copy_id";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $book_data = $result->fetch_assoc();
+    } else {
+        $message = "<div class='alert alert-warning'>No book copy found with that ID.</div>";
     }
 }
 ?>
@@ -52,33 +46,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Edit Book Copy</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+    <title>Update Book Condition</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="p-4">
-<div class="container">
-    <h2>Edit Book Copy Condition</h2>
-    <form method="post">
-        <div class="mb-3">
-            <label class="form-label">Condition Status</label>
-            <select name="condition" class="form-control" required>
-                <option value="New" <?= $copy['Condition'] === 'New' ? 'selected' : '' ?>>New</option>
-                <option value="Damaged" <?= $copy['Condition'] === 'Damaged' ? 'selected' : '' ?>>Damaged</option>
-                <option value="Lost" <?= $copy['Condition'] === 'Lost' ? 'selected' : '' ?>>Lost</option>
-            </select>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Availability Status</label>
-            <select name="availability" class="form-control" required>
-                <option value="Available" <?= $copy['Availability_Status'] === 'Available' ? 'selected' : '' ?>>Available</option>
-                <option value="Reserved" <?= $copy['Availability_Status'] === 'Reserved' ? 'selected' : '' ?>>Reserved</option>
-                <option value="Loaned" <?= $copy['Availability_Status'] === 'Loaned' ? 'selected' : '' ?>>Loaned</option>
-            </select>
-        </div>
-        <button type="submit" name="update" class="btn btn-success">Update</button>
-        <a href="manage_book_copies.php" class="btn btn-secondary">Cancel</a>
-    </form>
+<body class="bg-light">
+<div class="container mt-5">
+    <div class="card shadow p-4">
+        <h2 class="text-center text-primary mb-4">Update Book Condition</h2>
+        <?php echo $message; ?>
+
+        <!-- Search Form -->
+        <form method="GET" class="row g-3 mb-4">
+            <div class="col-md-8">
+                <input type="number" class="form-control" name="copy_id" placeholder="Enter Copy ID" required>
+            </div>
+            <div class="col-md-4">
+                <button type="submit" name="search" class="btn btn-primary w-100">Search</button>
+            </div>
+        </form>
+
+        <!-- Book Data & Update Form -->
+        <?php if ($book_data): ?>
+            <div class="border rounded p-3 mb-3 bg-white">
+                <h5 class="text-success"><?php echo $book_data['Title']; ?></h5>
+                <p><strong>Copy ID:</strong> <?php echo $book_data['Copy_ID']; ?></p>
+                <p><strong>Current Condition:</strong> <?php echo $book_data['Condition_Status']; ?></p>
+                <p><strong>Availability:</strong> <?php echo $book_data['Availability_Status']; ?></p>
+            </div>
+
+            <form method="POST" class="row g-3">
+                <input type="hidden" name="copy_id" value="<?php echo $book_data['Copy_ID']; ?>">
+                <div class="col-md-8">
+                    <select class="form-select" name="condition_status">
+                        <option value="New" <?php if($book_data['Condition_Status']=="New") echo "selected"; ?>>New</option>
+                        <option value="Damaged" <?php if($book_data['Condition_Status']=="Damaged") echo "selected"; ?>>Damaged</option>
+                        <option value="Lost" <?php if($book_data['Condition_Status']=="Lost") echo "selected"; ?>>Lost</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" name="update_condition" class="btn btn-success w-100">Update Condition</button>
+                </div>
+            </form>
+        <?php endif; ?>
+    </div>
 </div>
 </body>
 </html>
+
+<?php $conn->close(); ?>
+
+
 

@@ -31,6 +31,8 @@
         <li class="nav-item btn btn-outline-light ms-2">
           <a class="nav-link text-success fw-bold" href="signup.php">Signup</a>
         </li>
+        <li class="nav-item btn btn-outline-light ms-2">
+          <a class="nav-link text-warning fw-bold" href="staff_login.php">Staff Login</a>
       </ul>
     </div>
   </div>

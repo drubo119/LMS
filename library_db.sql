@@ -81,14 +81,17 @@ CREATE TABLE Loan (
 
 -- RESERVATION
 CREATE TABLE Reservation (
-  Staff_ID INT ,
-  Book_ID INT PRIMARY KEY,
-  Member_ID INT PRIMARY KEY,
-  Reservation_Date DATE,
-  Status ENUM('Pending', 'Fulfilled', 'Cancelled') DEFAULT 'Pending',
-  FOREIGN KEY (Book_ID) ,
-  FOREIGN KEY (Member_ID) 
+  Reservation_ID INT AUTO_INCREMENT PRIMARY KEY,
+  Book_ID INT NOT NULL,
+  Member_ID INT NOT NULL,
+  Staff_ID INT NULL,
+  Reservation_Date DATE NOT NULL,
+  Status ENUM('Pending', 'Reserved', 'Cancelled') DEFAULT 'Pending',
+  FOREIGN KEY (Book_ID) REFERENCES Books(Book_ID),
+  FOREIGN KEY (Member_ID) REFERENCES Member(Member_ID),
+  FOREIGN KEY (Staff_ID) REFERENCES Staff(Staff_ID)
 );
+
 
 -- STAFF / ADMIN
 CREATE TABLE Staff (

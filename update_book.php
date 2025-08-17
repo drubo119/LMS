@@ -10,9 +10,10 @@ if (isset($_POST['update'])) {
     $publisher = $_POST['publisher'];
     $isbn = $_POST['isbn'];
     $language = $_POST['language'];
+    $image_url = $_POST['image_url'] ?: 'photos/no-image.jpg'; // Default image if not provided
 
     $update = "UPDATE Book SET Title='$title', Author_ID='$author_id', Category_ID='$category_id', 
-               Publisher='$publisher', ISBN='$isbn', Language='$language' WHERE Book_ID=$book_id";
+               Publisher='$publisher', ISBN='$isbn', Language='$language', Image_URL='$image_url' WHERE Book_ID=$book_id";
     mysqli_query($conn, $update);
     header("Location: view_books.php");
     exit();
@@ -72,7 +73,11 @@ $categories = mysqli_query($conn, "SELECT * FROM Category");
         </div>
         <div class="mb-3">
             <label>Language:</label>
-            <input type="text" name="language" class="form-control" value="<?= $row['Language'] ?>">
+            <input type="text" name="language" class="form-control" value="<?= $row['Language'] ?>" required>
+        </div>
+        <div class="mb-3">
+            <label>Image URL:</label>
+            <input type="text" name="image_url" class="form-control" value="<?= $row['image_url'] ?>">
         </div>
         <button type="submit" name="update" class="btn btn-success">Update Book</button>
     </form>

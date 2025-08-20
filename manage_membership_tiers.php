@@ -101,7 +101,7 @@ if (isset($_GET['edit'])) {
                     <tr>
                         <td><?= $row['Policy_ID'] ?></td>
                         <td><?= htmlspecialchars($row['Membership_Type']) ?></td>
-                        <td><?= $row['Borrow_Limit'] ?></td>
+                        <td><?= $row['borrow_limit'] ?></td>
                         <td><?= number_format($row['Fine_Per_Day'], 2) ?></td>
                         <td><?= number_format($row['Max_Fine'], 2) ?></td>
                         <td>

@@ -218,34 +218,28 @@ if (!isset($_SESSION['user_name'])) {
 
 
     <!-- Borrowing Status -->
-    <div class="col-md-4">
-      <div class="card shadow h-100">
-        <div class="card-body">
+     <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body text-center">
           <h5 class="card-title">📖 My Borrowings</h5>
-          <ul>
-            <li><a href="view_borrowed_books.php">View Borrowed Books</a></li>
-            <li><a href="my_fines.php">Check Fines</a></li>
-          </ul>
+          <a href="view_borrowed_books.php" class="btn btn-primary mt-3">View Borrowed Books</a>
         </div>
       </div>
     </div>
 
     <!-- Profile -->
     <div class="col-md-4">
-      <div class="card shadow h-100">
-        <div class="card-body">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body text-center">
           <h5 class="card-title">👤 Profile</h5>
-          <ul>
-            <li><a href="edit_profile.php">Edit Profile</a></li>
-            <li><a href="borrowing_history.php">Borrowing History</a></li>
-          </ul>
+          <a href="edit_profile.php" class="btn btn-success mt-3 mb-2">Edit Profile</a>
+          <a href="borrowing_history.php" class="btn btn-success mt-2">Borrowing History</a>
         </div>
       </div>
     </div>
 
   </div>
 </div>
-<script src="book-carousel.js"></script>
 
 </body>
 </html>

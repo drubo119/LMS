@@ -144,7 +144,7 @@ $open_loans = $conn->query("
     </div>
 
     <div class="mt-3">
-        <a class="btn btn-secondary" href="staff_dashboard.php">Back to Dashboard</a>
+        <a class="btn btn-secondary" href="staff_dashboards.php">Back to Dashboard</a>
     </div>
 </div>
 </body>

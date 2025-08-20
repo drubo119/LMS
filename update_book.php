@@ -77,7 +77,7 @@ $categories = mysqli_query($conn, "SELECT * FROM Category");
         </div>
         <div class="mb-3">
             <label>Image URL:</label>
-            <input type="text" name="image_url" class="form-control" value="<?= $row['image_url'] ?>">
+            <input type="text" name="image_url" class="form-control" value="<?= $row['Image_URL'] ?>">
         </div>
         <button type="submit" name="update" class="btn btn-success">Update Book</button>
     </form>

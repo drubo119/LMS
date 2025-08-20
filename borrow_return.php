@@ -5,8 +5,8 @@ include 'db_connect.php';
 if (isset($_POST['borrow'])) {
     $book_id = $_POST['book_id'];
     $member_id = $_POST['member_id'];
-    $borrow_date = date('Y-m-d');
-    $due_date = date('Y-m-d', strtotime($borrow_date . " +14 days"));
+    $borrow_date = date('Y-m-d H:i:s');
+    $due_date = date('Y-m-d H:i:s', strtotime($borrow_date . " +1 minute "));
 
     $stmt = $conn->prepare("INSERT INTO Loan (Book_ID, Member_ID, Loan_Date, Due_Date, Status) VALUES (?, ?, ?, ?, 'Borrowed')");
     $stmt->bind_param("iiss", $book_id, $member_id, $borrow_date, $due_date);
@@ -19,7 +19,7 @@ if (isset($_POST['borrow'])) {
 // Return Book
 if (isset($_POST['return'])) {
     $loan_id = $_POST['loan_id'];
-    $return_date = date('Y-m-d');
+    $return_date = date('Y-m-d H:i:s');
 
     // Update Loan
     $stmt = $conn->prepare("UPDATE Loan SET Return_Date=?, Status='Returned' WHERE Loan_ID=?");

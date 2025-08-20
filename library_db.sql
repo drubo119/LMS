@@ -7,7 +7,7 @@ CREATE TABLE users (
     name VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
-    tier ENUM('student', 'faculty', 'staff') NOT NULL,
+    
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -52,7 +52,7 @@ CREATE TABLE Book_Copy (
   Book_ID INT,
   Condition_Status ENUM('New', 'Damaged', 'Lost') DEFAULT 'New',
   Availability_Status ENUM('Available', 'Reserved', 'Loaned') DEFAULT 'Available',
-  FOREIGN KEY (Book_ID) 
+  FOREIGN KEY Book_ID 
 );
 
 -- MEMBER
@@ -63,7 +63,9 @@ CREATE TABLE Member (
   Email VARCHAR(100),
   Street VARCHAR(100),
   City VARCHAR(100),
-  Postal_Code VARCHAR(20)
+  Postal_Code VARCHAR(20),
+  phone VARCHAR(20),
+  password VARCHAR(20)
 );
 
 -- LOAN
@@ -75,8 +77,10 @@ CREATE TABLE Loan (
   Due_Date DATE,
   Return_Date DATE,
   Fine_Amount DECIMAL(10,2),
+  Condition_Status  ENUM('New', 'Damaged', 'Lost') DEFAULT 'New',
   FOREIGN KEY (Book_Copy_ID) ,
-  FOREIGN KEY (Member_ID) 
+  FOREIGN KEY (Member_ID) ,
+  FOREIGN KEY (condition_status)
 );
 
 -- RESERVATION
@@ -112,6 +116,13 @@ CREATE TABLE Fine_Policy (
   Fine_Per_Day DECIMAL(5,2),
   Max_Fine DECIMAL(10,2)
 );
+-- Penalty 
+CREATE TABLE Penalty (
+    Penalty_ID INT AUTO_INCREMENT PRIMARY KEY,
+    Book_Condition VARCHAR(50) UNIQUE NOT NULL,
+    Amount INT NOT NULL
+);
+
 INSERT INTO Book_Copy (Book_ID, Condition_Status, Availability_Status) VALUES
 (1, 'New', 'Available'),
 (3, 'New', 'Available'),

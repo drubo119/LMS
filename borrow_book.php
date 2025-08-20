@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Create loan (2-week default)
             $loan = $conn->prepare("
                 INSERT INTO Loan (Book_Copy_ID, Member_ID, Loan_Date, Due_Date, Return_Date, Fine_Amount)
-                VALUES (?, ?, CURDATE(), DATE_ADD(CURDATE(), INTERVAL 14 DAY), NULL, 0.00)
+                VALUES (?, ?, CURDATE(), DATE_ADD(CURDATE(), INTERVAL 1 MINUTE), NULL, 0.00)
             ");
             $loan->bind_param("ii", $copy_id, $member_id);
             if ($loan->execute()) {

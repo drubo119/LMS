@@ -140,69 +140,7 @@ if (!isset($_SESSION['admin_name'])) {
     </div>
 
     <!-- Borrowing Management -->
-    <div class="col-md-4">
-      <div class="card shadow h-100">
-        <div class="card-body">
-          <h5 class="card-title">📖 Borrowing Management</h5>
-          <ul class="list-unstyled">
-            <li class="p-3" style="transition: background-color 0.3s;">
-  <a href="borrow_return.php" 
-     class="text-decoration-none d-block" 
-     style="color: inherit;" 
-     onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 
-     onmouseout="this.parentElement.style.backgroundColor='transparent'">
-    Borrow Book
-  </a>
-</li>
-            <li class="p-3" style="transition: background-color 0.3s;">
-  <a href="return_book.php" 
-     class="text-decoration-none d-block" 
-     style="color: inherit;" 
-     onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 
-     onmouseout="this.parentElement.style.backgroundColor='transparent'">
-    Return Book
-  </a>
-</li>
-            <li class="p-3" style="transition: background-color 0.3s;">
-  <a href="update_book_status.php" 
-     class="text-decoration-none d-block" 
-     style="color: inherit;" 
-     onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 
-     onmouseout="this.parentElement.style.backgroundColor='transparent'">
-    Update Book Status
-  </a>
-</li>
-            <li class="p-3" style="transition: background-color 0.3s;">
-  <a href="manage_reservations.php" 
-     class="text-decoration-none d-block" 
-     style="color: inherit;" 
-     onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 
-     onmouseout="this.parentElement.style.backgroundColor='transparent'">
-    Manage Reservations
-  </a>
-</li>
-            <li class="p-3" style="transition: background-color 0.3s;">
-  <a href="calculate_fine.php" 
-     class="text-decoration-none d-block" 
-     style="color: inherit;" 
-     onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 
-     onmouseout="this.parentElement.style.backgroundColor='transparent'">
-    Calculate Fines
-  </a>
-</li>
-            <li class="p-3" style="transition: background-color 0.3s;">
-  <a href="lost_damaged_books.php" 
-     class="text-decoration-none d-block" 
-     style="color: inherit;" 
-     onmouseover="this.parentElement.style.backgroundColor='#FFCDD2'" 
-     onmouseout="this.parentElement.style.backgroundColor='transparent'">
-    Lost/Damaged Penalties
-  </a>
-</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+
 
   </div>
 </div>

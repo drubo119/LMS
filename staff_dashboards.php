@@ -28,7 +28,7 @@ $staff_name = $_SESSION['staff_name'] ?? 'Staff';
 </nav>
 
 <div class="container py-5">
-    <h2 class="mb-4">Quick Actions</h2>
+    
     <div class="row g-4">
 
         <div class="col-md-4">

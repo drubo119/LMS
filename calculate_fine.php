@@ -2,9 +2,12 @@
 // calculate_fines_page.php
 include 'db_connect.php';
 
+
+
 // Define fixed penalties
-define('LOST_PENALTY_AMOUNT', 50.00);
-define('DAMAGED_PENALTY_AMOUNT', 20.00);
+//
+define('LOST_PENALTY_AMOUNT', 150.00);      // Penalty for lost book
+define('DAMAGED_PENALTY_AMOUNT', 120.00);
 
 /**
  * Get penalty based on return condition
